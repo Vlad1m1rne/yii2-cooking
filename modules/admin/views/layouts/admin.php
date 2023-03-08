@@ -65,17 +65,42 @@ $this->registerMetaTag(['name' => 'viewport', 'content' => 'width=device-width, 
         <div class="col text-center">
           <button id='other' class="btn btn-outline-success btn-lg"><?= Html::a('Другое', ['/my/other']) ?></button>
         </div>
-        <div class="col text-center">
-          <button id="login" class="btn btn-outline-success btn-lg btnlog">Авторизация</button>
-        </div>
+
+
+        <? if (Yii::$app->user->isGuest) : ?>
+          <div class="col text-center">
+            <button id="login" class="btn btn-outline-success btn-lg btnlog">Авторизация</button>
+          </div>
+        <? endif; ?>
+
+        <? if (!Yii::$app->user->isGuest) : ?>
+
+          <div class="col text-center">
+            <button id="login" class="btn btn-outline-success btn-lg btnlog"><?=Yii::$app->user->identity['userName']?></button>
+          </div>
+        <? endif; ?>
+
+
         <div id="log" class="col text-center" style="display:none">
-          <form action="login.php" method="POST">
-            <input type="text" class="form-control" name="userName" placeholder="login">
-            <input type="password" class="form-control" name="userPassword" placeholder="password">
-            <input type="submit" class="btn btn-success btn-sm" value="Войти">
-            <input id="otmena" type="button" class="btn btn-secondary btn-sm" value="Отмена">
-          </form>
+
+          <? if (Yii::$app->user->isGuest) : ?>
+            <button type="button" class="btn btn-success btn-sm"><?= Html::a('Войти', ['/site/login']) ?></button>
+          <? endif; ?>
+
+          <input id="otmena" type="button" class="btn btn-secondary btn-sm" value="Отмена">
+
+
+          <!-- <button type="button" class="btn btn-warning btn-sm"><?//= Html::a('Админка', ['/admin']) ?></button> -->
+
+          <? if (!Yii::$app->user->isGuest) : ?>
+            <button id="btnExit" type="button" class="btn btn-info btn-sm"><?=Html::a('Выйти',['/site/logout'])?></button>
+          <? endif; ?>
+
         </div>
+
+
+
+
       </div>
     </div>
   </header>
@@ -84,8 +109,13 @@ $this->registerMetaTag(['name' => 'viewport', 'content' => 'width=device-width, 
 
 
 
-    <?= $content ?>
+<div class="container text-center">
+  <button class="btn btn-secondary"><?=Html::a('Главная(admin)',['/admin/recipe'])?></button>
+</div>
 
+<div class="container">
+    <?= $content ?>
+    </div>
 
 
   </main>

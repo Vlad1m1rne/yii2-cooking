@@ -131,6 +131,8 @@ $this->registerMetaTag(['name' => 'viewport', 'content' => 'width=device-width, 
           <? endif; ?>
 
         </div>
+
+        
       </div>
     </div>
   </header>
