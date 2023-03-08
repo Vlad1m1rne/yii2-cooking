@@ -7,7 +7,7 @@ $config = [
     'id' => 'basic',
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
-    'language'=>'ru-RU',
+    'language' => 'ru-RU',
     'aliases' => [
         '@bower' => '@vendor/bower-asset',
         '@npm'   => '@vendor/npm-asset',
@@ -15,16 +15,16 @@ $config = [
     'modules' => [
         'admin' => [
             'class' => 'app\modules\admin\Module',
-            'layout'=>'admin',
-            
+            'layout' => 'admin',
+
         ],
     ],
 
     'components' => [
         'request' => [
-            'baseUrl'=>'',
-                 // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
+            // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
             'cookieValidationKey' => '4K50mR1jJUNlA0jpqDHIoqbuSPaIb9i-',
+            'baseUrl'=>'',
         ],
         'cache' => [
             'class' => 'yii\caching\FileCache',
@@ -52,17 +52,18 @@ $config = [
             ],
         ],
         'db' => $db,
-        
+
         'urlManager' => [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
+                
             ],
         ],
-        
+
     ],
     'params' => $params,
-    'defaultRoute'=>'my/index',
+    'defaultRoute' => '/my/index',
 ];
 
 if (YII_ENV_DEV) {
