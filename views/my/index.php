@@ -32,8 +32,10 @@ if (!isset($cookies['page'])) {
 
 <div class="container text-center">
   <div class="searchF" style='display: none'>
-    <h4>Найти в названиях рецептов:</h4>
+    <h4>Найти в:</h4>
     <form action=<?= Url::to(['my/search']) ?> method='GET'>
+    <input class='radio' type="radio" name='searchField' value='nameRecipe' checked> Названиях<br>
+    <input class='radio' type="radio" name='searchField' value='recipeDescription'> Рецептах<br>
       <input type="text" id='searchInp' name='searchVal' required="required">
       <input type="submit" class="btn btn-success btnM" value="Найти">
       <input id="btn7" type="reset" class="btn btn-secondary btnM" value="Отмена">

@@ -16,7 +16,7 @@ use app\components\TableWidget;
 
 <div class="container text-center tabl">
       <table class="mainT">
-      <?= TableWidget::widget(['cat'=>'search','searchVal'=>$_GET['searchVal']]) ?>
+      <?= TableWidget::widget(['cat'=>'search','searchVal'=>$_GET['searchVal'],'searchField'=>$_GET['searchField']]) ?>
         <thead>
           <tr>
             <th>Id</th>

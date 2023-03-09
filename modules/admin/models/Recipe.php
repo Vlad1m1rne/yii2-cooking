@@ -48,10 +48,10 @@ class Recipe extends \yii\db\ActiveRecord
         return [
             'recipeId' => 'Recipe ID',
             'categoryId' => 'Category ID',
-            'nameRecipe' => 'Name Recipe',
-            'ingredient' => 'Ingredient',
-            'recipeDescription' => 'Recipe Description',
-            'link' => 'Link',
+            'nameRecipe' => 'Название',
+            'ingredient' => 'Ингредиенты',
+            'recipeDescription' => 'Рецепт',
+            'link' => 'Ссылка',
             'dat' => 'Dat',
         ];
     }

@@ -12,6 +12,7 @@ class TableWidget extends Widget
   public $cat;
   public $query;
   public $searchVal;
+  public $searchField;
 
   public function init()
   {
@@ -47,7 +48,13 @@ class TableWidget extends Widget
     }
 
     if ($this->cat === 'search') {
+      if($this->searchField === 'nameRecipe'){
       $this->query = Recipe::find()->where(['like', 'nameRecipe', $this->searchVal])->with('category')->asArray();
+      }
+      elseif($this->searchField==='recipeDescription'){
+        $this->query = Recipe::find()->where(['like', 'recipeDescription', $this->searchVal])->with('category')->asArray();
+
+      }
     }
 
     $pages = new Pagination(['totalCount' => $this->query->count(), 'pageSize' => 5]);

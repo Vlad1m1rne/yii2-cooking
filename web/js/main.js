@@ -30,6 +30,7 @@ $(document).ready(function () {
     let id = $(this).val();
     $('.inpUpd').val(id);
   });
+
   $('#btn4').click(function () {
     $('.updF').hide();
   })
@@ -64,15 +65,15 @@ $(document).ready(function () {
     $('#login').show()
   });
 
-$('#btn6').click(function(){
-$('.searchF').show();
-$(this).hide();
-});
+  $('#btn6').click(function () {
+    $('.searchF').show();
+    $(this).hide();
+  });
 
-$('#btn7').click(function(){
-$('.searchF').hide();
-$('#btn6').show();
-});
+  $('#btn7').click(function () {
+    $('.searchF').hide();
+    $('#btn6').show();
+  });
 
 
 
