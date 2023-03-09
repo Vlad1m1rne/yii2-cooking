@@ -37,7 +37,7 @@ body {
     border-radius: 0.2rem;
   }
 
-  .btn-primary {
+  .btn-primary,.btn-danger {
     padding: 0.25rem 0.5rem;
     font-size: 0.8rem;
     border-radius: 0.2rem;
@@ -74,7 +74,7 @@ body {
     border-radius: 0.2rem;
   }
 
-  .btn-primary {
+  .btn-primary,.btn-danger  {
     padding: 0.15rem 0.4rem;
     font-size: 0.75rem;
     border-radius: 0.2rem;
