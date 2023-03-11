@@ -68,6 +68,27 @@ class MyController extends Controller
       return $this->render('index', compact('model'));
    }
 
+
+
+   public function actionUpdate($id){
+      $model = Recipe::findOne($id);
+if($this->request->isPost and $model->load($this->request->post()) and $model->save()){
+   Yii::$app->session->setFlash('updateOk', 'Рецепт изменен');
+   return $this->redirect(['view','id'=>$model->recipeId]);
+}
+else {
+   // Yii::$app->session->setFlash('updateErr', 'Ошибка обновления');
+   return $this->render('update',['model'=>$model]);
+}
+   }
+
+
+   public function actionView($id){
+      $model = Recipe::findOne($id);
+
+      return $this->render('view',['model'=>$model]);
+   }
+
 public function actionSearch($searchVal){
 
    $this->view->title = 'Результаты поиска';

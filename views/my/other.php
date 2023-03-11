@@ -1,8 +1,5 @@
 <?
 use app\components\TableWidget;
-
-
-
 ?>
 
 <? $this->beginBlock('block1') ?>

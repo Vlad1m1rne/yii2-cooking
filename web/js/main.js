@@ -25,15 +25,15 @@ $(document).ready(function () {
 
   });
 
-  $('button.upd').click(function () {
-    $('.updF').show();
-    let id = $(this).val();
-    $('.inpUpd').val(id);
-  });
+  // $('button.upd').click(function () {
+  //   $('.updF').show();
+  //   let id = $(this).val();
+  //   $('.inpUpd').val(id);
+  // });
 
-  $('#btn4').click(function () {
-    $('.updF').hide();
-  })
+  // $('#btn4').click(function () {
+  //   $('.updF').hide();
+  // })
 
   $('#btn1').click(function () {
     $(this).hide();
