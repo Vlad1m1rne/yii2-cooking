@@ -20,7 +20,7 @@ class MyController extends Controller
          if ($model->validate()) {
             if (isset($_POST['Recipe']['recipeDescription']) and isset($_POST['Recipe']['nameRecipe']) and isset($_POST['Recipe']['ingredient']) and isset($_POST['Recipe']['categoryId'])) {
 
-               if ($_POST['Recipe']['recipeDescription'] != '' and $_POST['Recipe']['nameRecipe'] !== '' and $_POST['Recipe']['ingredient'] != '' and $_POST['Recipe']['categoryId'] != '' and $_POST['Recipe']['recipeId'] === null) {
+               if ($_POST['Recipe']['recipeDescription'] != '' and $_POST['Recipe']['nameRecipe'] !== '' and $_POST['Recipe']['ingredient'] != '' and $_POST['Recipe']['categoryId'] != '' and !(isset($_POST['Recipe']['recipeId']))) {
 
                   $model->categoryId = $_POST['Recipe']['categoryId'];
                   $model->nameRecipe = $_POST['Recipe']['nameRecipe'];
@@ -31,22 +31,6 @@ class MyController extends Controller
                   $model->save();
                   Yii::$app->session->setFlash('addOk', 'Рецепт добавлен');
                   return $this->refresh();
-               } elseif ($_POST['Recipe']['recipeId'] != null) {
-                  if ($_POST['Recipe']['recipeDescription'] != '' and $_POST['Recipe']['nameRecipe'] !== '' and $_POST['Recipe']['ingredient'] != '' and $_POST['Recipe']['categoryId'] != '' and $_POST['Recipe']['recipeId'] != '') {
-
-                     $modelUpd = Recipe::findOne($_POST['Recipe']['recipeId']);
-                     $modelUpd->categoryId = $_POST['Recipe']['categoryId'];
-                     $modelUpd->nameRecipe = $_POST['Recipe']['nameRecipe'];
-                     $modelUpd->ingredient = $_POST['Recipe']['ingredient'];
-                     $modelUpd->recipeDescription = $_POST['Recipe']['recipeDescription'];
-                     $modelUpd->link = $_POST['Recipe']['link'];
-                     $modelUpd->dat = date('Y-m-d', time());
-                     $modelUpd->save();
-                     Yii::$app->session->setFlash('updOk', 'Рецепт изменен');
-                     return $this->refresh();
-                  } else {
-                     Yii::$app->session->setFlash('addErr', 'Заполните все поля формы');
-                  }
                } else {
                   Yii::$app->session->setFlash('addErr', 'Заполните все поля формы');
                }
@@ -70,30 +54,32 @@ class MyController extends Controller
 
 
 
-   public function actionUpdate($id){
+   public function actionUpdate($id)
+   {
       $model = Recipe::findOne($id);
-if($this->request->isPost and $model->load($this->request->post()) and $model->save()){
-   Yii::$app->session->setFlash('updateOk', 'Рецепт изменен');
-   return $this->redirect(['view','id'=>$model->recipeId]);
-}
-else {
-   // Yii::$app->session->setFlash('updateErr', 'Ошибка обновления');
-   return $this->render('update',['model'=>$model]);
-}
+      if ($this->request->isPost and $model->load($this->request->post()) and $model->save()) {
+         Yii::$app->session->setFlash('updateOk', 'Рецепт изменен');
+         return $this->redirect(['view', 'id' => $model->recipeId]);
+      } else {
+         // Yii::$app->session->setFlash('updateErr', 'Ошибка обновления');
+         return $this->render('update', ['model' => $model]);
+      }
    }
 
 
-   public function actionView($id){
+   public function actionView($id)
+   {
       $model = Recipe::findOne($id);
 
-      return $this->render('view',['model'=>$model]);
+      return $this->render('view', ['model' => $model]);
    }
 
-public function actionSearch($searchVal){
+   public function actionSearch($searchVal)
+   {
 
-   $this->view->title = 'Результаты поиска';
-   return $this->render('search',compact('searchVal'));
-}
+      $this->view->title = 'Результаты поиска';
+      return $this->render('search', compact('searchVal'));
+   }
 
    public function actionFirst()
    {
