@@ -22,7 +22,7 @@ if($models == null){
       echo "<td>" . $line['link'] . "</td>";
     }
     echo "<td>" . $line['dat'] . "</td>";
-    echo "<td><button class='upd btn btn-success btnM'>" . Html::a('Изменить', Url::toRoute(['my/view','id'=> $line['recipeId']])) . "</button></td>";
+    echo "<td><button class='upd btn btn-success btnM'>" . Html::a('Изменить', Url::toRoute(['my/update','id'=> $line['recipeId']])) . "</button></td>";
     echo "</tr>";
    
   }
