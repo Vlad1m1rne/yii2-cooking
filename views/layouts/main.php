@@ -140,7 +140,9 @@ $this->registerMetaTag(['name' => 'viewport', 'content' => 'width=device-width, 
   <main>
 
     <?= $this->blocks['block1'];  ?>
+    <? if(isset($this->blocks['block2'])):?>
     <?= $this->blocks['block2']; ?>
+    <?endif;?>
 
     <?= $content ?>
 
