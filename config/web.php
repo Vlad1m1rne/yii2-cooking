@@ -1,4 +1,5 @@
 <?php
+use yii\rest\UrlRule;
 
 $params = require __DIR__ . '/params.php';
 $db = require __DIR__ . '/db.php';
@@ -11,6 +12,8 @@ $config = [
     'aliases' => [
         '@bower' => '@vendor/bower-asset',
         '@npm'   => '@vendor/npm-asset',
+        '@modules' => '@app/modules',
+        '@api' => '@app/modules/api',
     ],
     'modules' => [
         'admin' => [
@@ -19,13 +22,22 @@ $config = [
             'defaultRoute' => 'recipe/index',
 
         ],
+        'api' => [
+            'class' => 'app\modules\api\Module',
+            'basePath' => '@api',
+            // 'defaultRoute' => 'recipe',
+
+        ]
     ],
 
     'components' => [
         'request' => [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
             'cookieValidationKey' => '4K50mR1jJUNlA0jpqDHIoqbuSPaIb9i-',
-            'baseUrl'=>'',
+            'baseUrl' => '',
+            'parsers' => [
+                'application/json' => 'yii\web\JsonParser',
+            ],
         ],
         'cache' => [
             'class' => 'yii\caching\FileCache',
@@ -58,10 +70,44 @@ $config = [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
-                
+                ['class' => UrlRule::class, 'controller' => 'recipe',  'pluralize' => false],
+
             ],
         ],
 
+        // 'urlManager' => [
+        //     'enablePrettyUrl' => true,
+        //     //  'enableStrictParsing' => true,
+        //     'showScriptName' => false,
+        //     'rules' => [
+        //         [
+        //            'class' => 'yii\rest\UrlRule', 
+        //             // 'prefix' => 'api',
+        //            'controller' => 'recipe',
+        //             // 'except' => ['delete'],
+        //            'pluralize' => false,
+
+        //         //    '' => 'my/index',                                
+        //         //    '<controller:\w+>/<action:\w+>/' => '<controller>/<action>',
+                   
+        //         ],
+
+        //     ],
+        // ],
+
+        // 'urlManager' => [
+        //     'enablePrettyUrl' => true,
+        //     'showScriptName' => false,
+        //     'rules' => [
+        //        ['' => 'my/index',
+        //         '<action>'=>'my/<action>',],
+        //         ['class' => UrlRule::class, 
+        //         'controller' => 'recipe',],
+                
+        //     ],
+        // ],
+
+        
     ],
     'params' => $params,
     'defaultRoute' => '/my/index',
@@ -73,7 +119,7 @@ if (YII_ENV_DEV) {
     $config['modules']['debug'] = [
         'class' => 'yii\debug\Module',
         // uncomment the following to add your IP if you are not connecting from localhost.
-        //'allowedIPs' => ['127.0.0.1', '::1'],
+        // 'allowedIPs' => ['127.0.0.1'],
     ];
 
     $config['bootstrap'][] = 'gii';

@@ -17,7 +17,7 @@ class Recipe extends ActiveRecord
   public function rules()
   {
     return [
-      [['recipeId', 'categoryId', 'nameRecipe', 'recipeDescription', 'ingredient', 'link'], 'safe'],
+      [['recipeId', 'categoryId', 'nameRecipe', 'recipeDescription', 'ingredient', 'link','dat'], 'safe'],
     ];
   }
 }
