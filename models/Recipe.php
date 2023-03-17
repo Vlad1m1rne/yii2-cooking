@@ -14,10 +14,31 @@ class Recipe extends ActiveRecord
   {
     return $this->hasOne(Category::class, ['categoryId' => 'categoryId']);
   }
+
   public function rules()
   {
+      return [
+          [['categoryId'], 'integer'],
+          [['nameRecipe', 'ingredient', 'recipeDescription', 'link'], 'string'],
+          [['dat'], 'safe'],
+          [['categoryId'], 'exist', 'skipOnError' => true, 'targetClass' => Category::class, 'targetAttribute' => ['categoryId' => 'categoryId']],
+      ];
+  }
+
+
+  // public function rules()
+  // {
+  //   return [
+  //     [['recipeId', 'categoryId', 'nameRecipe', 'recipeDescription', 'ingredient', 'link','dat'], 'safe'],
+  //   ];
+  // }
+  public function fields(){
     return [
-      [['recipeId', 'categoryId', 'nameRecipe', 'recipeDescription', 'ingredient', 'link','dat'], 'safe'],
+      'recipeId',
+      'categoryId',
+      'nameRecipe',
+      'recipeDescription',
+      'ingredient',
     ];
   }
 }
