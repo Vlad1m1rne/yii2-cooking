@@ -13,7 +13,7 @@ if($models == null){
     echo "<tr>";
     echo "<td>" .Html::a($line['recipeId'], Url::toRoute(['my/view','id'=> $line['recipeId']])) . "</td>";
     echo "<td>" . $line['category']['nameCategory'] . "</td>";
-    echo "<td>" . $line['nameRecipe'] . "</td>";
+    echo "<td>" .Html::a($line['nameRecipe'],Url::toRoute(['my/view','id'=>$line['recipeId']]) ) . "</td>";
     echo "<td>" . $line['ingredient'] . "</td>";
     echo "<td>" . $line['recipeDescription'] . "</td>";
     if ($line['link'] != null) {

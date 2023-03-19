@@ -53,7 +53,9 @@ class TableWidget extends Widget
       }
       elseif($this->searchField==='recipeDescription'){
         $this->query = Recipe::find()->where(['like', 'recipeDescription', $this->searchVal])->with('category')->asArray();
-
+      }
+      elseif($this->searchField ==='ingredient'){
+        $this->query = Recipe::find()->where(['like','ingredient',$this->searchVal])->with('category')->asArray();
       }
     }
 

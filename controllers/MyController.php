@@ -13,7 +13,7 @@ class MyController extends Controller
    {
 
       $model = new Recipe();
-      $this->view->title = 'Главная';
+      $this->view->title = 'Кулинарная книга: Главная стр.';
 
 
       if ($model->load(Yii::$app->request->post())) {
@@ -52,8 +52,6 @@ class MyController extends Controller
       return $this->render('index', compact('model'));
    }
 
-
-
    public function actionUpdate($id)
    {
       $model = Recipe::findOne($id);
@@ -61,8 +59,7 @@ class MyController extends Controller
          Yii::$app->session->setFlash('updateOk', 'Рецепт изменен');
          return $this->redirect(['view', 'id' => $model->recipeId]);
       } else {
-         // Yii::$app->session->setFlash('updateErr', 'Ошибка обновления');
-         return $this->render('update', ['model' => $model]);
+          return $this->render('update', ['model' => $model]);
       }
    }
 

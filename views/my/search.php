@@ -4,7 +4,12 @@ use app\components\TableWidget;
 
 <? $this->beginBlock('block1') ?>
 <div class="container text-center">
-  <h3>Результаты поиска</h3>
+  <h3>Результаты поиска.</h3>
+  <h4>Вы искали: "<?=$_GET['searchVal']?>" в <? if($_GET['searchField']=='nameRecipe') echo "названиях.";
+  elseif($_GET['searchField']=='recipeDescription') echo "рецептах.";
+  elseif($_GET['searchField'] == 'ingredient') echo "ингредиентах.";
+  ?>
+</h4>
 </div>
 <? $this->endBlock() ?>
 
